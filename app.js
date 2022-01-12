@@ -1,5 +1,5 @@
 
-require("dotenv").configure();
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const date = require(__dirname+"/date.js");
