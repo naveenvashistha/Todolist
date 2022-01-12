@@ -12,7 +12,7 @@ app.use(express.urlencoded());
 app.use(express.static("public"));
 
 
-mongoose.connect("mongodb+srv://+"+process.env.MONGO_USERNAME+":"+process.env.MONGO_SECRET+"@cluster0.2oarx.mongodb.net/itemsDB",{useNewUrlParser:true});
+mongoose.connect("mongodb+srv://"+process.env.MONGO_USERNAME+":"+process.env.MONGO_SECRET+"@cluster0.2oarx.mongodb.net/itemsDB",{useNewUrlParser:true});
 
 const itemsSchema = {
   name:String
