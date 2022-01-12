@@ -1,6 +1,11 @@
 <%- include("header") -%>
   <div class="box" id="heading">
-    <h1><%= kindOfDay %> </h1>
+    <h1><%= kindOfDate %> </h1>
+  </div>
+  <div class="box" id="heading">
+  <% if (customName.length !== 0){ %>
+    <h1><%= customName %></h1>
+    <% } %>
   </div>
   <div class="box">
 

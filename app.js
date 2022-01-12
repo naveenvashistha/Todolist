@@ -32,7 +32,8 @@ const listSchema = {
 const lists = mongoose.model("lists",listSchema);
 
 app.get("/",function(req,res){
-  let day = date.getDate();
+  let todayDate = date.getDate();
+  let day = date.getDay();
   items.find(function(err,results){
     if (err){
       console.log(err);
@@ -49,13 +50,14 @@ app.get("/",function(req,res){
       res.redirect("/");
     }
     else{
-res.render("list",{kindOfDay:day,items:results});
+res.render("list",{kindOfDate:todayDate,items:results,kindOfDay:day,customName:""});
     }
   }
   });
 });
 
 app.get("/:customList",function(req,res){
+  let todayDate = date.getDate();
   const customList = _.capitalize(req.params.customList);
   lists.findOne({name:customList},function(err,result){
     if(!err){
@@ -69,7 +71,7 @@ app.get("/:customList",function(req,res){
       }
       else{
         console.log(result.defaultList);
-        res.render("list",{kindOfDay:customList,items:result.defaultList});
+        res.render("list",{kindOfDate:todayDate,items:result.defaultList,kindOfDay:customList,customName:customList});
       }
     }
   });
@@ -80,7 +82,9 @@ app.post("/",function(req,res){
 const item = new items({
   name: req.body.nextItem
 });
-let day =  date.getDate();
+let day =  date.getDay();
+console.log(req.body.button);
+console.log(day);
 if (req.body.button === day){
 item.save();
 res.redirect("/");
@@ -97,7 +101,8 @@ res.redirect("/");
 
 app.post("/delete",function(req,res){
   console.log(req.body.listName);
-  if (req.body.listName === "Today"){
+  let day = date.getDay();
+  if (req.body.listName === day){
   items.findByIdAndRemove(req.body.checkbox,function(err){
     if (!err){
       console.log("successfully deleted");
@@ -125,6 +130,6 @@ let port = process.env.PORT;
 if(port===null || port ===""){
   port  = 3000;
 }
-app.listen(port,function(){
+app.listen(3000,function(){
   console.log("server is running on port 3000");
 })
