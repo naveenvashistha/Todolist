@@ -80,7 +80,8 @@ app.post("/",function(req,res){
 const item = new items({
   name: req.body.nextItem
 });
-if (req.body.button === "Today"){
+let day =  date.getDate();
+if (req.body.button === day){
 item.save();
 res.redirect("/");
 }else{
