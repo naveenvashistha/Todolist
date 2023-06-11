@@ -1,27 +1,57 @@
 <%- include("header") -%>
-  <div class="box" id="heading">
+<div class="middle">
+    <div class="box" id="heading">
     <h1><%= kindOfDate %> </h1>
   </div>
   <div class="box" id="heading">
-  <% if (customName.length !== 0){ %>
     <h1><%= customName %></h1>
-    <% } %>
   </div>
-  <div class="box">
+  <div class="box" style="margin-bottom: 50px;">
 
     <%   for (var i=0; i<items.length; i++){ %>
       <form action="/delete" method="post">
     <div class="item">
       <input type="checkbox" name="checkbox" value="<%= items[i]._id %>" onchange="this.form.submit()">
       <p><%= items[i].name %></p>
-      <input type="hidden" name="listName" value="<%= kindOfDay %>">
+      <input type="hidden" name="listName" value="<%= customName %>">
     </div>
     </form>
     <% } %>
     <form class="item" action="/" method="post">
       <input type="text" name="nextItem" placeholder="New item" autocomplete="off">
-      <button type="submit" name="button" value=<%= kindOfDay %>>+</button>
+      <button class="buttonclass" type="submit" name="button" value="<%= customName %>">+</button>
     </form>
   </div>
-
+  <div class="customlists">
+      <% for(var j=0; j<listnames.length; j++){ %>
+        <% if(customName === listnames[j].name){ %>
+        <div class="selectedBox listbox" onclick="location.href='/list/<%= listnames[j].name %>';">
+             <span><%= listnames[j].name %></span>
+             <form class="icons" method="post" action="/deletelist">
+              <button type="submit" value="<%= listnames[j]._id %>" name="listid" class="buttonicons">
+                <i class="fa-sharp fa-solid fa-trash iconstyling"></i>
+              </button>
+              </form>
+        </div>
+        <% }else{ %>
+        <div class="listbox unselectedBox" onclick="location.href='/list/<%= listnames[j].name %>';">
+            <span><%= listnames[j].name %></span>
+            <form class="icons" method="post" action="/deletelist">
+            <button type="submit" value="<%= listnames[j]._id %>" name="listid" class="buttonicons">
+              <i class="fa-sharp fa-solid fa-trash"></i>
+            </button>
+            </form>
+       </div>
+          <% } %>
+      <% } %> 
+      <div class="listbox addlistdiv">
+        <form class="addform" method="post" action="/newlist">
+        <input class="newInput" type="text" name="newList" placeholder="New List" autocomplete="off">
+        <button type="submit" class="buttonicons">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        </form>
+      </div>
+  </div>
+</div>
 <%- include("footer") -%>
