@@ -53,6 +53,7 @@ app.get("/list/:customList",async function(req,res){
   console.log(customList);
   lists.findOne({name:customList},function(err,result){
     if(!err){
+        console.log(result);
         if (customList === "Home" && !result){
           const list1 = new lists({
             name:customList,
