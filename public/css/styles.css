@@ -127,7 +127,6 @@ footer {
   margin: 1rem;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
 .listbox:hover{
@@ -136,13 +135,40 @@ footer {
   color: black;
 }
 
-.selectedBox{
-  background-color: #5C469C;
-  color: #fff;
-}
-
 .unselectedBox{
   background-color: #E4E9FD;
+}
+
+.selectedBox{
+  background-color: #5C469C;
+  color: white;
+}
+
+.iconstyling{
+  cursor: pointer;
+}
+
+.selectedBox .iconstyling{
+  color: white;
+}
+
+.listbox:hover .iconstyling{
+  color: black;
+}
+
+.firstchild{
+   flex-basis: 75%;
+}
+
+.align{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+}
+
+.secondchild{
+  flex-basis: 25%;
 }
 
 .main-wrapper{
@@ -159,24 +185,13 @@ footer{
   margin: 2rem;
 }
 
-.icons{
-  position: absolute;
-  right: 0.7rem;
-}
+
 
 .buttonicons{
   padding: 0;
   border: 0;
   font-size: 1rem;
   background-color: transparent;
-}
-
-.iconstyling{
-  color: #fff;
-}
-
-.listbox:hover .iconstyling{
-  color: black;
 }
 
 .newInput{

@@ -25,23 +25,31 @@
   <div class="customlists">
       <% for(var j=0; j<listnames.length; j++){ %>
         <% if(customName === listnames[j].name){ %>
-        <div class="selectedBox listbox" onclick="location.href='/list/<%= listnames[j].name %>';">
+        <div class="selectedBox listbox">
+        <div class="firstchild align" onclick="location.href='/list/<%= listnames[j].name %>';">
              <span><%= listnames[j].name %></span>
-             <form class="icons" method="post" action="/deletelist">
-              <button type="submit" value="<%= listnames[j]._id %>" name="listid" class="buttonicons">
-                <i class="fa-sharp fa-solid fa-trash iconstyling"></i>
-              </button>
-              </form>
         </div>
-        <% }else{ %>
-        <div class="listbox unselectedBox" onclick="location.href='/list/<%= listnames[j].name %>';">
-            <span><%= listnames[j].name %></span>
-            <form class="icons" method="post" action="/deletelist">
+        <div class="secondchild align">
+          <form class="icons" method="post" action="/deletelist">
             <button type="submit" value="<%= listnames[j]._id %>" name="listid" class="buttonicons">
-              <i class="fa-sharp fa-solid fa-trash"></i>
+              <i class="fa-sharp fa-solid fa-trash iconstyling"></i>
             </button>
             </form>
-       </div>
+        </div>
+        </div>
+        <% }else{ %>
+          <div class="unselectedBox listbox">
+            <div class="firstchild align"  onclick="location.href='/list/<%= listnames[j].name %>';">
+                 <span><%= listnames[j].name %></span>
+            </div>
+            <div class="secondchild align">
+              <form class="icons" method="post" action="/deletelist">
+                <button type="submit" value="<%= listnames[j]._id %>" name="listid" class="buttonicons">
+                  <i class="fa-sharp fa-solid fa-trash iconstyling"></i>
+                </button>
+                </form>
+            </div>
+            </div>
           <% } %>
       <% } %> 
       <div class="listbox addlistdiv">
