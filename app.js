@@ -50,10 +50,8 @@ app.get("/list/:customList",async function(req,res){
   let todayDate = date.getDate();
   const customList = req.params.customList;
   let results1 = await lists.find();
-  console.log(req.params.customList);
   lists.findOne({name:customList},function(err,result){
     if(!err){
-        console.log(result);
         if (customList === "Home" && !result){
           const list1 = new lists({
             name:customList,
@@ -66,7 +64,6 @@ app.get("/list/:customList",async function(req,res){
           });
         }
         else{
-        console.log(result);
         res.render("list",{kindOfDate:todayDate,items:result.defaultList,customName:customList,listnames:results1});
         }
       }
@@ -99,7 +96,6 @@ app.post("/delete",function(req,res){
 app.post("/deletelist",function(req,res){
   lists.deleteOne({_id:req.body.listid},(err)=>{
     if(!err){
-      console.log("Hey");
       res.redirect("/list/Home");
     }
     else{
